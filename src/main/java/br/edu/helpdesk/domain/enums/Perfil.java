@@ -1,9 +1,9 @@
 package br.edu.helpdesk.domain.enums;
 
 public enum Perfil {
-	BAIXA(0, "BAIXA"), 
-	MEDIA(1, "MEDIA"), 
-	ALTA(2, "ALTA");
+	ADMIN(0, "ROLE_ADMIN"), 
+	CLIENTE(1, "ROLE_CLIENTE"), 
+	TECNICO(2, "ROLE_TECNICO");
 	
 	private Integer codigo;
 	private String descricao;
@@ -33,7 +33,7 @@ public enum Perfil {
 			}
 		}
 		
-		throw new IllegalArgumentException("Prioridade inválida!");
+		throw new IllegalArgumentException("Perfil inválido!");
 	}
 	
 }
