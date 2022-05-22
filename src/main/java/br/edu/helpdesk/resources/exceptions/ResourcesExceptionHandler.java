@@ -1,7 +1,5 @@
 package br.edu.helpdesk.resources.exceptions;
 
-import java.time.LocalDate;
-
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.http.HttpStatus;
