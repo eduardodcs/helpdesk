@@ -3,6 +3,8 @@ package br.edu.helpdesk.domain.dtos;
 import java.io.Serializable;
 import java.time.LocalDate;
 
+import javax.validation.constraints.NotNull;
+
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import br.edu.helpdesk.domain.Chamado;
@@ -17,11 +19,17 @@ public class ChamadoDTO implements Serializable {
 	private LocalDate dataAbertura = LocalDate.now();
 	@JsonFormat(pattern = "dd/MM/yyyy")
 	private LocalDate dataFechamento;
-	private Prioridade prioridade;
-	private Status status;
+	@NotNull(message = "O campo PRIORIDADE é requerido!")
+	private Integer prioridade;
+	@NotNull(message = "O campo STATUS é requerido!")
+	private Integer status;
+	@NotNull(message = "O campo TITULO é requerido!")
 	private String titulo;
+	@NotNull(message = "O campo OBSERVAÇÕES é requerido!")
 	private String observacao;
+	@NotNull(message = "O campo TÉCNICO é requerido!")
 	private Integer tecnico;
+	@NotNull(message = "O campo CLIENTE é requerido!")
 	private Integer cliente;
 	private String nomeTecnico;
 	private String nomeCliente;
@@ -33,8 +41,8 @@ public class ChamadoDTO implements Serializable {
 	public ChamadoDTO(Chamado cham) {
 		super();
 		this.id = cham.getId();
-		this.prioridade = cham.getPrioridade();
-		this.status = cham.getStatus();
+		this.prioridade = cham.getPrioridade().getCodigo();
+		this.status = cham.getStatus().getCodigo();
 		this.titulo = cham.getTitulo();
 		this.observacao = cham.getObservacao();
 		this.tecnico = cham.getTecnico().getId();
@@ -67,19 +75,19 @@ public class ChamadoDTO implements Serializable {
 		this.dataFechamento = dataFechamento;
 	}
 
-	public Prioridade getPrioridade() {
+	public Integer getPrioridade() {
 		return prioridade;
 	}
 
-	public void setPrioridade(Prioridade prioridade) {
+	public void setPrioridade(Integer prioridade) {
 		this.prioridade = prioridade;
 	}
 
-	public Status getStatus() {
+	public Integer getStatus() {
 		return status;
 	}
 
-	public void setStatus(Status status) {
+	public void setStatus(Integer status) {
 		this.status = status;
 	}
 
