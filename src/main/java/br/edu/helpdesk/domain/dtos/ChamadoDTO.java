@@ -8,8 +8,6 @@ import javax.validation.constraints.NotNull;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import br.edu.helpdesk.domain.Chamado;
-import br.edu.helpdesk.domain.enums.Prioridade;
-import br.edu.helpdesk.domain.enums.Status;
 
 public class ChamadoDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -41,6 +39,8 @@ public class ChamadoDTO implements Serializable {
 	public ChamadoDTO(Chamado cham) {
 		super();
 		this.id = cham.getId();
+		this.dataAbertura = cham.getDataAbertura();
+		this.dataFechamento = cham.getDataFechamento();
 		this.prioridade = cham.getPrioridade().getCodigo();
 		this.status = cham.getStatus().getCodigo();
 		this.titulo = cham.getTitulo();

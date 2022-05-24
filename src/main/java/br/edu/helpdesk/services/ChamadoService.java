@@ -1,7 +1,10 @@
 package br.edu.helpdesk.services;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
+
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -49,6 +52,9 @@ public class ChamadoService {
 		if (dto.getId() != null) {
 			cham.setId(dto.getId());
 		}
+		if (dto.getStatus().equals(2)) {
+			cham.setDataFechamento(LocalDate.now());
+		}
 		cham.setTecnico(tec);
 		cham.setCliente(cli);
 		cham.setPrioridade(Prioridade.toEnum(dto.getPrioridade()));
@@ -56,6 +62,13 @@ public class ChamadoService {
 		cham.setObservacao(dto.getObservacao());
 		cham.setTitulo(dto.getTitulo());
 		return cham;
+	}
+
+	public Chamado update(Integer id, @Valid ChamadoDTO dto) {
+		dto.setId(id);
+		Chamado cham = this.findById(id);
+		cham = newChamado(dto);
+		return chamadoRepository.save(cham);
 	}
 	
 	
