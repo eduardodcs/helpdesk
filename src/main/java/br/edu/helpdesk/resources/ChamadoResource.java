@@ -2,6 +2,7 @@ package br.edu.helpdesk.resources;
 
 import java.net.URI;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.validation.Valid;
 
@@ -36,7 +37,7 @@ public class ChamadoResource {
 	@GetMapping
 	public ResponseEntity<List<ChamadoDTO>> findAll(){
 		List<Chamado> list = chamadoService.findAll();
-		List<ChamadoDTO> listDTO = list.stream().map(c -> new ChamadoDTO(c)).toList();
+		List<ChamadoDTO> listDTO = list.stream().map(c -> new ChamadoDTO(c)).collect(Collectors.toList());
 		return ResponseEntity.ok().body(listDTO);
 	}
 	
